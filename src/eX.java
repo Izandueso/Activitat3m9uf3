@@ -58,22 +58,20 @@ public class eX {
 			}
 			System.out.println("===============================================================");
 			
-			if (textarguments.contains("script")){
+			
 				System.out.println("Contingut de [url.getFile()]: " + url.getFile());		
 				BufferedReader pagina = new BufferedReader(new InputStreamReader(url.openStream()));
 
 				while ((cadena = pagina.readLine()) != null) {
 					
-						System.out.println(cadena);
-						
+					if (cadena.contains("script")){	
+						System.out.println(cadena);				
+					}					
 				}
-			}
-			
 		}
+		
 		catch (MalformedURLException e) { e.printStackTrace();}
 		catch (IOException e) {e.printStackTrace();}
-		
-		
 		
 	}
 
