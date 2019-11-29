@@ -16,13 +16,13 @@ public class eX {
 			System.out.println("Introdueix una URL: exemple -> http://insbaixcamp.org/index.php/2013-10-29-12-24-12/informacio-general-4 <-");
 			String urlinsti = teclado.nextLine();
 			
-			//Demanem els camps de capçalera que es volen
-			System.out.println("Introdueix els camps de capçalera que vols: exemple -> 1 , 2 , 3 , 4 <-");
-			int campCapçalera = teclado.nextInt();
-			
 			//Demanem el text per mostrar arguments
 			System.out.println("Introdueix un text per mostrar arguments, exemple: ->  #java cerca  http://insbaixcamp.org/  5  script <-");
 			String textarguments = teclado.nextLine();
+			
+			//Demanem els camps de capçalera que es volen
+			System.out.println("Introdueix els camps de capçalera que vols: exemple -> 1 , 2 , 3 , 4 ...<-");
+			int campCapçalera = teclado.nextInt();
 			
 			String cadena;
 			URL url = new URL(urlinsti);
@@ -58,12 +58,15 @@ public class eX {
 			}
 			System.out.println("===============================================================");
 			
-			System.out.println("Contingut de [url.getFile()]: " + url.getFile());
-			BufferedReader pagina = new BufferedReader(new InputStreamReader(url.openStream()));
-			
-			while ((cadena = pagina.readLine()) != null) {
-				
-				System.out.println(cadena);
+			if (textarguments.contains("script")){
+				System.out.println("Contingut de [url.getFile()]: " + url.getFile());		
+				BufferedReader pagina = new BufferedReader(new InputStreamReader(url.openStream()));
+
+				while ((cadena = pagina.readLine()) != null) {
+					
+						System.out.println(cadena);
+						
+				}
 			}
 			
 		}
@@ -71,23 +74,7 @@ public class eX {
 		catch (IOException e) {e.printStackTrace();}
 		
 		
+		
 	}
-	boolean isGifFormat(URL url){
-		 boolean ret = false;
-		 try {
-		 URLConnection con = url.openConnection();
-		 String headerType = con.getContentType();
-		 String guessType = con.guessContentTypeFromName(url.
-		getFile());
-		 ret = headerType.endsWith("script") || guessType.endsWith("script");
-		 } catch (IOException ex) {
-		 Logger.getLogger(eX.class.getName()).log(Level.
-		SEVERE, null, ex);
-		 }
-		 return ret;
-		 }
-
-	
-	
 
 }
